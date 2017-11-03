@@ -2,8 +2,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin("~/.config/nvim/bundle")
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -14,60 +14,64 @@ Plugin 'tpope/vim-rails'                             " was not working, enable i
 Plugin 'honza/vim-snippets'
 Plugin 'tomtom/tcomment_vim'                         " source for gcc command for comments
 Plugin 'tpope/vim-fugitive.git'                      " git support
-Plugin 'pangloss/vim-javascript'                     " JavaScript support
-Plugin 'mxw/vim-jsx'
-Plugin 'https://github.com/vim-scripts/ScrollColors'
-Plugin 'myjoytou/YouCompleteMe'                      " Using forked version of
+" Plugin 'pangloss/vim-javascript'                     " JavaScript support
+" Plugin 'mxw/vim-jsx'
+" Plugin 'https://github.com/vim-scripts/ScrollColors'
+" Plugin 'myjoytou/YouCompleteMe'                      " Using forked version of
 " YCM as it was causing the backspace in delimitmate to break and both quotes
 " were not getting deleted correctly, when using :DelimitMateText, it got
 " caught
 " Plugin 'Valloric/YouCompleteMe'                      " Completion engine for vim
+Plugin 'Shougo/deoplete.nvim'                        " asynchronous auto completion for neovim
+Plugin 'fishbullet/deoplete-ruby'                    " ruby code Completion
+" Plugin 'osyo-manga/vim-monster'                      " ruby code completion
 Plugin 'junegunn/fzf'                                " Fuzzy search files
 Plugin 'junegunn/fzf.vim'                            " fuzzy search support for vim
 Plugin 'scrooloose/nerdtree'                         " File explorer in tree for vim
 Plugin 'Xuyuanp/nerdtree-git-plugin'                 " shows the file chaged status in tree
 Plugin 'vim-airline/vim-airline'                     " shows status in vim, has a lot of info
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-syntastic/syntastic'                     " syntax linting support for vim
+" Plugin 'vim-syntastic/syntastic'                     " syntax linting support for vim
+Plugin 'neomake/neomake'                             " asynchronous linting in neovim
+" Plugin 'w0rp/ale'                                    " Seems better than neomake
 Plugin 'rking/ag.vim'                                " the silver searcher support for vim
 Plugin 'mtth/scratch.vim'                            " put anything in scratch buffer, no need to create any file
-Plugin 'dyng/ctrlsf.vim'                             " Search every where ctrl shift f functionality like sublime
-Plugin 'terryma/vim-multiple-cursors'                " press ctrl n for selecting multiple similar words at a time
-
+" Plugin 'dyng/ctrlsf.vim'                             " Search every where ctrl shift f functionality like sublime
+" Plugin 'terryma/vim-multiple-cursors'                " press ctrl n for selecting multiple similar words at a time
 Plugin 'mattn/emmet-vim'                             " emmet support for vim
 Plugin 'SirVer/ultisnips'                            " snippet pluggin
-Plugin 'epilande/vim-react-snippets'
-Plugin 'epilande/vim-es2015-snippets'
-Plugin 'ternjs/tern_for_vim'                         " completion engine for javascript
+" Plugin 'epilande/vim-react-snippets'
+" Plugin 'epilande/vim-es2015-snippets'
+" Plugin 'ternjs/tern_for_vim'                         " completion engine for javascript
 Plugin 'tpope/vim-surround'                          " change or delete surrounding text
-Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'jelera/vim-javascript-syntax'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'yggdroot/indentline'
 Plugin 'Raimondi/delimitMate'                        " Provides automatic closing quotes, parens
 Plugin 'tpope/vim-endwise'                           " Adds end to ruby code
 Plugin 'airblade/vim-gitgutter'                      " Git gutter support for vim
 Plugin 'vim-ruby/vim-ruby'                           " Vim/ Ruby configuration files for ruby
-Plugin 'vim-scripts/taglist.vim'                     " Source code browser
+" Plugin 'vim-scripts/taglist.vim'                     " Source code browser
+" Plugin 'JamshedVesuna/vim-markdown-preview'          " Previewing markdown without leaving vim
+Plugin 'euclio/vim-markdown-composer'                " Better than vim-markdown-preview
 Plugin 'vim-scripts/Rename'                          " Rename a file in buffer and on disk
 Plugin 'vim-scripts/BufOnly.vim'                     " delete all buffers but current one
 Plugin 'pbrisbin/vim-mkdir'                          " Automatic creating non-existant directories
 Plugin 'ngmy/vim-rubocop'                            " RoboCop syntax checker
-Plugin 'jceb/vim-orgmode'                            " Todo list in vim like emacs org mode
-Plugin 'tpope/vim-speeddating'                       " dependency for vim-orgmode
+Plugin 'rainerborene/vim-reek'                       " Reek code smell checker
+" Plugin 'jceb/vim-orgmode'                            " Todo list in vim like emacs org mode
+" Plugin 'tpope/vim-speeddating'                       " dependency for vim-orgmode
 Plugin 'tpope/vim-haml'                              " Latest HAML support
 Plugin 'tpope/vim-obsession'                         " vim session management
-Plugin 'godlygeek/tabular'                           " plugin to auto align things
+" Plugin 'godlygeek/tabular'                           " plugin to auto align things
 Plugin 'octol/vim-cpp-enhanced-highlight'            " cpp highlighting
-Plugin 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
+" Plugin 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
 Plugin 'pseewald/vim-anyfold'                        " better folding in vim: indent based
-Plugin 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
-Plugin 'wikitopian/hardmode'                         " disable h,j,k,l and arrow keys in vim
+" Plugin 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
+" Plugin 'wikitopian/hardmode'                         " disable h,j,k,l and arrow keys in vim
 
 
 
-"" Dusted plugins
-
-" Plugin 'JamshedVesuna/vim-markdown-preview'          " Previewing markdown without leaving vim
 " Plugin 'skwp/greplace.vim'                           " Search and replace across all files interactively
 " Plugin 'chrisbra/csv.vim'                            " CSV support for VIM
 " Plugin 'vim-scripts/IndexedSearch'                   " shows 'Nth match out of M' at every search (index of match+total # matches)
@@ -130,8 +134,6 @@ set nowrap                     " don't wrap lines
 
 let mapleader = ","            " mapping leader(\) to ,
 
-
-set autowrite                  " Automatic write to the buffer when switching buffer
 
 " --------------------------------------------------------------------
 "  TABS AND SPACES
@@ -241,6 +243,31 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_autoclose_preview_window_after_completion=1 " close the preview window after the completion
 " let g:ycm_show_diagnostics_ui = 0     " do not use YCM syntax checker
 
+" --------------------------------------------------------------
+"    Deoplete settings start here
+" --------------------------------------------------------------
+
+let g:deoplete#enable_at_startup = 1
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#mappings#manual_complete()
+
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+
+" --------------------- Deoplete Settings Ends here -------------
+
+" "" vim-monster settings
+" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+" let g:deoplete#sources#omni#input_patterns = {
+" \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+" \}
+
 "" Nerd Tree specific
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -256,7 +283,7 @@ let g:airline_theme='onedark'
 let g:UltiSnipsExpandTrigger='<C-j>'
 let g:UltiSnipsJumpForwardTrigger='<C-j>'
 let g:UltiSnipsJumpBackwardTrigger='<C-k>'
-let g:UltiSnipsSnippetsDir='~/.vim/custom_snippets'
+let g:UltiSnipsSnippetsDir='~/.config/nvim/custom_snippets'
 " Setting the search path for snippets
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
 
@@ -272,42 +299,67 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 "
 
-" --------------------------------------------------------------------
-" Syntastic Settings
-" --------------------------------------------------------------------
 
-let g:syntastic_javascript_checkers = ['eslint']      " eslint
+" --------------------------------------------------------------
+"    Neomake related settings
+" --------------------------------------------------------------
 
-" disable syntastic automatic check for html, markdown and haml
+" When writing a buffer.
+call neomake#configure#automake('w')
+" When writing a buffer, and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
+" When reading a buffer (after 1s), and when writing.
+call neomake#configure#automake('rw', 1000)
+
+" let g:neomake_open_list = 2 " open quickfix automatically
+
+" For ruby
+" let g:neomake_ruby_enabled_makers = ['mri', 'rubocop', 'reek']
+
+let g:neomake_place_signs = 1
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 1
+
+" --------------------- Neomake settings ends here -------------
+
+
+
+" -------------------------------------------------------------------------
+"   Syntastic related settings
+" -------------------------------------------------------------------------
+
+" Disable inherited syntastic
 let g:syntastic_mode_map = {
-      \ "mode": "active",
-      \ "passive_filetypes": ["html", "md", "haml"] }
-
-"" Ruby
-" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-
-" ruby path if you are using rbenv
-let g:ruby_path = system('echo $HOME/.rbenv/shims')
-
-let g:syntastic_ruby_checkers = ['mri']
-let g:syntastic_cpp_checkers = ['gcc']
-let g:syntastic_cpp_cpplint_exec = 'cpplint'  " as cpplint is downloaded using pip this is required
+\ "mode": "passive",
+\ "active_filetypes": [],
+\ "passive_filetypes": [] }
 
 " let g:syntastic_debug = 33
 " let g:syntastic_quiet_messages={}
 " let g:syntastic_quiet_messages = {'level': 'warnings'}
 
-"" Syntastic related settings
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
-" ------------------------ Syntastic Setting Ends here  ----------------------
+" let g:syntastic_javascript_checkers = ['eslint']      " eslint
+
+"" Ruby
+" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+
+" ruby path if you are using rbenv
+" let g:ruby_path = system('echo $HOME/.rbenv/shims')
+
+" let g:syntastic_ruby_checkers = ['mri']
+" let g:syntastic_cpp_checkers = ['gcc']
+" let g:syntastic_cpp_cpplint_exec = 'cpplint'  " as cpplint is downloaded using pip this is required
+
+"----------------------------- Syntastic settings ends here ----------------
 
 " settings for vim cpp enhanced highlighting
 let g:cpp_class_scope_highlight = 1
@@ -334,10 +386,10 @@ let g:tern_show_argument_hints='on_hold' "show argument hints
 map <Leader>t :TernDef<Return>
 
 "" Markdown preview settings
-" let vim_markdown_preview_hotkey='<C-m>'
-" " let vim_markdown_preview_browser='Google'
-" let vim_markdown_preview_github=1
-" let vim_markdown_preview_toggle=2
+let vim_markdown_preview_hotkey='<C-m>'
+" let vim_markdown_preview_browser='Google'
+let vim_markdown_preview_github=1
+let vim_markdown_preview_toggle=2
 
 " using all the colors 256 versions
 let g:rehash256 = 1
@@ -347,9 +399,9 @@ let g:rehash256 = 1
 
 " This is the default extra key bindings
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-x': 'split',
+\ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 " - down / up / left / right
@@ -362,17 +414,17 @@ let g:fzf_layout = { 'down': '~40%' }
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+\ 'bg':      ['bg', 'Normal'],
+\ 'hl':      ['fg', 'Comment'],
+\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\ 'hl+':     ['fg', 'Statement'],
+\ 'info':    ['fg', 'PreProc'],
+\ 'prompt':  ['fg', 'Conditional'],
+\ 'pointer': ['fg', 'Exception'],
+\ 'marker':  ['fg', 'Keyword'],
+\ 'spinner': ['fg', 'Label'],
+\ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -390,10 +442,6 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
-" Vim hard mode settings
-" autocmd! VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>m <Esc>:call ToggleHardMode()<CR>
-
 " ------------------------ PLUGINS ENDS HERE -----------------------
 
 
@@ -401,37 +449,39 @@ nnoremap <leader>m <Esc>:call ToggleHardMode()<CR>
 "  KEY MAPPINGS
 " --------------------------------------------------------------------
 
-"" mapping leader for buffer switch
-map <Leader>a :bprev<Return>
-map <Leader>s :bnext<Return>
-map <Leader>d :bd<Return>
-" map <Leader>f :b
-map <leader>q :buffers<Return>:buffer
+" Always use noremap instead of map as noremap is non-recursive in
+" nature and it will never run into recursion. For more info
+" read http://learnvimscriptthehardway.stevelosh.com/chapters/05.html
+"
 
-" easier moving of code blocks
-" Try to go into visual mode (v), thenselect several lines of code here and
-" then press ``>`` several times.
-vnoremap < <gv  " better indentation
-vnoremap > >gv  " better indentation
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+"" mapping leader for buffer switch
+noremap <Leader>a :bprev<Return>
+noremap <Leader>s :bnext<Return>
+noremap <Leader>d :bd<Return>
+" map <Leader>f :b
+noremap <leader>q :buffers<Return>:buffer
+
 
 " Mapping Ag for search with preview
 " map <leader>f :Ag <CR>
 
 "" mapping ctrl shift f
-map <leader>e :CtrlSF
+noremap <leader>e :CtrlSF
 
 "" mapping git diff
-map <leader>g :Gdiff<Return>
+noremap <leader>g :Gdiff<Return>
 
 "" mapping :vnew
-map <leader>v :vnew<CR>
+noremap <leader>v :vnew<CR>
 
-map <Leader><Enter> :Buffers <CR>
+noremap <Leader><Enter> :Buffers <CR>
 
-map <leader>x :!
+noremap <leader>x :!
 
 "" c++11 stuffs
-map <leader>cx :! g++ -std=c++11
+noremap <leader>cx :! g++ -std=c++11
 
 "" For macro playing
 nnoremap <Space> @q
@@ -456,7 +506,7 @@ nnoremap <leader>j <C-W><C-J>
 nnoremap <leader>k <C-W><C-K>
 nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>h <C-W><C-H>
-map <leader>o :only<CR>
+noremap <leader>o :only<CR>
 
 " to prevent clash with youcompleteme, change snippet trigger
 " imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
@@ -467,6 +517,7 @@ vnoremap // y/<C-R>"<CR>
 
 " bind K to grep word under cursor
 nnoremap <leader>b  :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+" nnoremap <leader>b  :Ag <cword><CR>:cw<CR>
 command! -nargs=+ -complete=file -bar Ag silent! ag! <args>|cwindow|redraw!
 
 " " Tagbar toggle command
@@ -477,23 +528,23 @@ nnoremap rm :call delete(expand('%')) \| bdelete!<CR>
 
 " nnoremap <F5> :buffers<CR>:buffer<Space>
 
-" FZF settings
 
-map <C-p> :FZF<CR>
+" FZF settings
+noremap <C-p> :FZF<CR>
 
 " Indenting the whole file
-nmap <leader>i :normal ggvG=<cr>
+nnoremap <leader>i :normal ggvG=<cr>
 
 " Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+nnoremap <leader><tab> <plug>(fzf-maps-n)
+xnoremap <leader><tab> <plug>(fzf-maps-x)
+onoremap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <c-x><c-k> <plug>(fzf-complete-word)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
@@ -503,30 +554,35 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " --------------------------------------------------------------------
 
 " Sourcing vimrc when written
-autocmd! BufWritePost .vimrc source %
-autocmd! BufWritePost .vimrc silent! !cp % ~/dotfiles/.vimrc1
+" autocmd! BufWritePost ~/.config/nvim/init.vim source % " not working for some reason
+
+autocmd! BufWritePost ~/.config/nvim/init.vim :source $MYVIMRC<cr>
+autocmd! BufWritePost ~/.config/nvim/init.vim silent! !cp % ~/dotfiles/init.vim
 
 
-" Strip trailing whitespace
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+" this might be slowing nvim down
+" " Strip trailing whitespace
+" function! <SID>StripTrailingWhitespaces()
+"     " Preparation: save last search, and cursor position.
+"     let _s=@/
+"     let l = line(".")
+"     let c = col(".")
+"     " Do the business:
+"     %s/\s\+$//e
+"     " Clean up: restore previous search history, and cursor position
+"     let @/=_s
+"     call cursor(l, c)
+" endfunction
+" autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " For mouse events in vim
 set mouse=a
 if has("mouse_sgr")
   set ttymouse=sgr
 else
-  set ttymouse=xterm2
+  if !has('nvim')
+    set ttymouse=xterm2
+  endif
 end
 
 runtime macros/matchit.vim  " for matching do end in ruby
