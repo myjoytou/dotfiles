@@ -125,6 +125,11 @@ set cc=80           " highlight the 80 columns
 
 set background=dark " Background color for better constrast
 
+set termguicolors   " use true-colors in terminal
+
+" using different cursor size for insert mode and normal mode
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+
 " sets the status line
 set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
 
@@ -219,6 +224,7 @@ set tags=./tags;,tags;           " look for a tags file in the directory of the 
 "" Support for ack
 set grepprg=ag
 
+" Searching {{{
 " --------------------------------------------------------------------
 "  SEARCHING
 " --------------------------------------------------------------------
@@ -229,7 +235,7 @@ set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
 " ------------------------ SEARCHING ENDS HERE ----------------------
-
+" }}}
 
 " --- backup and swap files ---
 " I save all the time, those are annoying and unnecessary...
@@ -237,12 +243,11 @@ set smartcase                   " ... unless they contain at least one capital l
 " set nowritebackup
 " set noswapfile
 
-" }}}
 
+"  Plugins {{{
 " --------------------------------------------------------------------
 "  PLUGINS
 " --------------------------------------------------------------------
-"  Plugins {{{
 
 "" Javascript syntax highlighting
 let g:javascript_plugin_jsdoc = 1
@@ -258,10 +263,10 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_autoclose_preview_window_after_completion=1 " close the preview window after the completion
 " let g:ycm_show_diagnostics_ui = 0     " do not use YCM syntax checker
 
+" Deoplete Settings {{{
 " --------------------------------------------------------------
 "    Deoplete settings start here
 " --------------------------------------------------------------
-" Deoplete Settings {{{
 let g:deoplete#enable_at_startup = 1
 
 inoremap <silent><expr> <TAB>
@@ -274,9 +279,8 @@ function! s:check_back_space() abort "{{{
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
-" }}}
-
 " --------------------- Deoplete Settings Ends here -------------
+" }}}
 
 " "" vim-monster settings
 " let g:monster#completion#rcodetools#backend = "async_rct_complete"
@@ -319,10 +323,10 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 "
 
+" Neomake Settings {{{
 " --------------------------------------------------------------
 "    Neomake related settings
 " --------------------------------------------------------------
-" Neomake Settings {{{
 " When writing a buffer.
 call neomake#configure#automake('w')
 " When writing a buffer, and on normal mode changes (after 750ms).
@@ -343,10 +347,10 @@ let g:neomake_serialize_abort_on_error = 1
 " }}}
 
 
+" Syntastic settings {{{
 " -------------------------------------------------------------------------
 "   Syntastic related settings
 " -------------------------------------------------------------------------
-" Syntastic settings {{{
 " Disable inherited syntastic
 let g:syntastic_mode_map = {
       \ "mode": "passive",
@@ -417,6 +421,7 @@ map <Leader>t :TernDef<Return>
 
 "" Todo list in vim
 
+" FZF related settings {{{
 " This is the default extra key bindings
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -461,16 +466,19 @@ let g:fzf_tags_command = 'ctags -R'
 
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+" }}}
 
 " ------------------------ PLUGINS ENDS HERE -----------------------
 
 " }}}
 
+
+" Key Mappings {{{
+"
 " --------------------------------------------------------------------
 "  KEY MAPPINGS
 " --------------------------------------------------------------------
 
-" Key Mappings {{{
 
 " Always use noremap instead of map as noremap is non-recursive in
 " nature and it will never run into recursion. For more info
@@ -565,8 +573,10 @@ noremap <C-p> :FZF<CR>
 " Indenting the whole file
 nnoremap <leader>i :normal gg=G<cr>
 
-" Mapping selecting mappings
-nnoremap <leader><tab> <plug>(fzf-maps-n)
+" Put error on a line which have trailing whitespace
+nnoremap <Leader>w :match Error /\v\s+$/<CR>
+
+" Mapping selecting mappings nnoremap <leader><tab> <plug>(fzf-maps-n)
 xnoremap <leader><tab> <plug>(fzf-maps-x)
 onoremap <leader><tab> <plug>(fzf-maps-o)
 
@@ -592,12 +602,10 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " set marker as fold method in vim
 " Vimscript file setttings ---------------------------------- {{{
 augroup filetype_vim
-    autocmd!
-    autocmd FileType vim set foldlevel=0
-    autocmd FileType vim setlocal foldmethod=marker
+  autocmd!
+  autocmd FileType vim set foldlevel=0
+  autocmd FileType vim setlocal foldmethod=marker
 augroup END
-
-" }}}
 
 augroup vim_rc_write
   autocmd!
@@ -605,6 +613,15 @@ augroup vim_rc_write
 
   " Sourcing vimrc when written
   autocmd BufWritePost ~/.config/nvim/init.vim :source $MYVIMRC
+augroup END
+
+" }}}
+
+" Markdown auto folds {{{
+augroup filetype_markdown
+  autocmd!
+  autocmd FileType markdown set foldlevel=0
+  autocmd FileType markdown setlocal foldmethod=marker
 augroup END
 
 " this might be slowing nvim down
