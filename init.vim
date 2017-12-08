@@ -9,105 +9,111 @@ syntax enable
 
 " Plugins Listings {{{
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
+" set rtp+=~/.config/nvim/bundle/Vundle.vim
 
 " change vundle to suit nvim rather than vim
-call vundle#begin("~/.config/nvim/bundle")
+" call vundle#begin("~/.config/nvim/bundle")
+call plug#begin('~/.config/nvim/plugged')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-rails'                             " was not working, enable it sometimes later
+Plug 'gmarik/Vundle.vim'
+Plug 'tpope/vim-rails', { 'for': 'ruby' }                             " was not working, enable it sometimes later
 
-Plugin 'honza/vim-snippets'
-Plugin 'tomtom/tcomment_vim'                         " source for gcc command for comments
-Plugin 'tpope/vim-fugitive.git'                      " git support
-" Plugin 'pangloss/vim-javascript'                     " JavaScript support
-" Plugin 'mxw/vim-jsx'
-" Plugin 'https://github.com/vim-scripts/ScrollColors'
-" Plugin 'myjoytou/YouCompleteMe'                      " Using forked version of
+Plug 'honza/vim-snippets'
+Plug 'tomtom/tcomment_vim'                         " source for gcc command for comments
+Plug 'tpope/vim-fugitive'                      " git support
+" Plug 'pangloss/vim-javascript'                     " JavaScript support
+" Plug 'mxw/vim-jsx'
+" Plug 'https://github.com/vim-scripts/ScrollColors'
+" Plug 'myjoytou/YouCompleteMe'                      " Using forked version of
 " YCM as it was causing the backspace in delimitmate to break and both quotes
 " were not getting deleted correctly, when using :DelimitMateText, it got
 " caught
-" Plugin 'Valloric/YouCompleteMe'                      " Completion engine for vim
-Plugin 'Shougo/deoplete.nvim'                        " asynchronous auto completion for neovim
-Plugin 'fishbullet/deoplete-ruby'                    " ruby code Completion
-" Plugin 'osyo-manga/vim-monster'                      " ruby code completion
-Plugin 'junegunn/fzf'                                " Fuzzy search files
-Plugin 'junegunn/fzf.vim'                            " fuzzy search support for vim
-Plugin 'scrooloose/nerdtree'                         " File explorer in tree for vim
-Plugin 'Xuyuanp/nerdtree-git-plugin'                 " shows the file chaged status in tree
-Plugin 'vim-airline/vim-airline'                     " shows status in vim, has a lot of info
-Plugin 'vim-airline/vim-airline-themes'
-" Plugin 'vim-syntastic/syntastic'                     " syntax linting support for vim
-Plugin 'neomake/neomake'                             " asynchronous linting in neovim
-" Plugin 'w0rp/ale'                                    " Seems better than neomake
-Plugin 'rking/ag.vim'                                " the silver searcher support for vim
-Plugin 'mtth/scratch.vim'                            " put anything in scratch buffer, no need to create any file
-" Plugin 'dyng/ctrlsf.vim'                             " Search every where ctrl shift f functionality like sublime
-" Plugin 'terryma/vim-multiple-cursors'                " press ctrl n for selecting multiple similar words at a time
-Plugin 'mattn/emmet-vim'                             " emmet support for vim
-Plugin 'SirVer/ultisnips'                            " snippet pluggin
-" Plugin 'epilande/vim-react-snippets'
-" Plugin 'epilande/vim-es2015-snippets'
-" Plugin 'ternjs/tern_for_vim'                         " completion engine for javascript
-Plugin 'tpope/vim-surround'                          " change or delete surrounding text
-" Plugin 'jelera/vim-javascript-syntax'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'yggdroot/indentline'
-Plugin 'Raimondi/delimitMate'                        " Provides automatic closing quotes, parens
-Plugin 'tpope/vim-endwise'                           " Adds end to ruby code
-Plugin 'airblade/vim-gitgutter'                      " Git gutter support for vim
-Plugin 'vim-ruby/vim-ruby'                           " Vim/ Ruby configuration files for ruby
-" Plugin 'vim-scripts/taglist.vim'                     " Source code browser
-" Plugin 'JamshedVesuna/vim-markdown-preview'          " Previewing markdown without leaving vim
-Plugin 'euclio/vim-markdown-composer'                " Better than vim-markdown-preview
-Plugin 'vim-scripts/Rename'                          " Rename a file in buffer and on disk
-Plugin 'vim-scripts/BufOnly.vim'                     " delete all buffers but current one
-Plugin 'pbrisbin/vim-mkdir'                          " Automatic creating non-existant directories
-Plugin 'ngmy/vim-rubocop'                            " RoboCop syntax checker
-Plugin 'rainerborene/vim-reek'                       " Reek code smell checker
-" Plugin 'jceb/vim-orgmode'                            " Todo list in vim like emacs org mode
-" Plugin 'tpope/vim-speeddating'                       " dependency for vim-orgmode
-Plugin 'tpope/vim-haml'                              " Latest HAML support
-Plugin 'tpope/vim-obsession'                         " vim session management
-" Plugin 'godlygeek/tabular'                           " plugin to auto align things
-Plugin 'octol/vim-cpp-enhanced-highlight'            " cpp highlighting
-" Plugin 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
-Plugin 'pseewald/vim-anyfold'                        " better folding in vim: indent based
-" Plugin 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
-" Plugin 'wikitopian/hardmode'                         " disable h,j,k,l and arrow keys in vim
+" Plug 'Valloric/YouCompleteMe'                      " Completion engine for vim
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " asynchronous auto completion for neovim
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby'}              " ruby code Completion
+Plug 'Shougo/deoplete-rct', { 'for' : 'ruby'}                  " ruby code completion using rcodetools gem
+Plug 'Shougo/neco-vim'                             " vim code Completion
+" Plug 'osyo-manga/vim-monster'                      " ruby code completion
+Plug 'junegunn/fzf'                                " Fuzzy search files
+Plug 'junegunn/fzf.vim'                            " fuzzy search support for vim
+Plug 'scrooloose/nerdtree'                         " File explorer in tree for vim
+Plug 'Xuyuanp/nerdtree-git-plugin'                 " shows the file chaged status in tree
+Plug 'vim-airline/vim-airline'                     " shows status in vim, has a lot of info
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-syntastic/syntastic'                     " syntax linting support for vim
+Plug 'neomake/neomake'                             " asynchronous linting in neovim
+" Plug 'w0rp/ale'                                    " Seems better than neomake
+Plug 'rking/ag.vim'                                " the silver searcher support for vim
+Plug 'mtth/scratch.vim'                            " put anything in scratch buffer, no need to create any file
+" Plug 'dyng/ctrlsf.vim'                             " Search every where ctrl shift f functionality like sublime
+" Plug 'terryma/vim-multiple-cursors'                " press ctrl n for selecting multiple similar words at a time
+Plug 'mattn/emmet-vim'                             " emmet support for vim
+Plug 'SirVer/ultisnips'                            " snippet pluggin
+" Plug 'epilande/vim-react-snippets'
+" Plug 'epilande/vim-es2015-snippets'
+" Plug 'ternjs/tern_for_vim'                         " completion engine for javascript
+Plug 'tpope/vim-surround'                          " change or delete surrounding text
+Plug 'ntpeters/vim-better-whitespace'              " remove whitespace
+" Plug 'jelera/vim-javascript-syntax'
+Plug 'flazz/vim-colorschemes'
+Plug 'yggdroot/indentline'
+Plug 'Raimondi/delimitMate'                        " Provides automatic closing quotes, parens
+Plug 'tpope/vim-endwise'                           " Adds end to ruby code
+Plug 'airblade/vim-gitgutter'                      " Git gutter support for vim
+Plug 'vim-ruby/vim-ruby'                           " Vim/ Ruby configuration files for ruby
+" Plug 'vim-scripts/taglist.vim'                     " Source code browser
+" Plug 'JamshedVesuna/vim-markdown-preview'          " Previewing markdown without leaving vim
+Plug 'euclio/vim-markdown-composer', { 'for': 'markdown' }                " Better than vim-markdown-preview
+Plug 'vim-scripts/Rename'                          " Rename a file in buffer and on disk
+Plug 'vim-scripts/BufOnly.vim'                     " delete all buffers but current one
+Plug 'pbrisbin/vim-mkdir'                          " Automatic creating non-existant directories
+Plug 'ngmy/vim-rubocop'                            " RoboCop syntax checker
+Plug 'rainerborene/vim-reek'                       " Reek code smell checker
+" Plug 'jceb/vim-orgmode'                            " Todo list in vim like emacs org mode
+" Plug 'tpope/vim-speeddating'                       " dependency for vim-orgmode
+Plug 'tpope/vim-haml'                              " Latest HAML support
+Plug 'tpope/vim-obsession'                         " vim session management
+" Plug 'godlygeek/tabular'                           " plugin to auto align things
+Plug 'octol/vim-cpp-enhanced-highlight'            " cpp highlighting
+" Plug 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
+Plug 'pseewald/vim-anyfold'                        " better folding in vim: indent based
+Plug 'dbgx/lldb.nvim'                              " lldb support for neovim
+" Plug 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
+" Plug 'wikitopian/hardmode'                         " disable h,j,k,l and arrow keys in vim
 
 
 
-" Plugin 'skwp/greplace.vim'                           " Search and replace across all files interactively
-" Plugin 'chrisbra/csv.vim'                            " CSV support for VIM
-" Plugin 'vim-scripts/IndexedSearch'                   " shows 'Nth match out of M' at every search (index of match+total # matches)
-" Plugin 'vim-scripts/Specky'                          " Functions to help make behavioral testing easy with ruby and rspec, it was too old
-" Plugin 'garbas/vim-snipmate'                         " Not very good as ultisnip will replace it
-" Plugin 'MarcWeber/vim-addon-mw-utils'                " Required by snipmate
-" Plugin 'tomtom/tlib_vim'                             " Required by snipmate. This library provides some utility functions. There isn't much need to  install it unless another plugin requires you to do so. NOT SO IMPORTANT
-" Plugin 'majutsushi/tagbar'      " Display tags in a window ordered by scope,
+" Plug 'skwp/greplace.vim'                           " Search and replace across all files interactively
+" Plug 'chrisbra/csv.vim'                            " CSV support for VIM
+" Plug 'vim-scripts/IndexedSearch'                   " shows 'Nth match out of M' at every search (index of match+total # matches)
+" Plug 'vim-scripts/Specky'                          " Functions to help make behavioral testing easy with ruby and rspec, it was too old
+" Plug 'garbas/vim-snipmate'                         " Not very good as ultisnip will replace it
+" Plug 'MarcWeber/vim-addon-mw-utils'                " Required by snipmate
+" Plug 'tomtom/tlib_vim'                             " Required by snipmate. This library provides some utility functions. There isn't much need to  install it unless another plugin requires you to do so. NOT SO IMPORTANT
+" Plug 'majutsushi/tagbar'      " Display tags in a window ordered by scope,
 " there was some problem with this plugin
-" Plugin 'xolox/vim-easytags'     " Automatic generation of ctags
-" Plugin 'xolox/vim-misc'                              " Required by vim easytags
-" Plugin 'alvan/vim-closetag'   " Auto close html tags. No use!!!
-" Plugin 'thaerkh/vim-workspace'   " Auto save files and Sessions
-" Plugin 'vim-scripts/SyntaxComplete'
-" Plugin 'tpope/vim-dispatch'      " Plugin for async call using vim
-" Plugin 'vim-scripts/ShowMarks'   " Plugin for showing marks set by m
-" Plugin 'vim-scripts/project.tar.gz' " not required
-" Plugin 'vim-scripts/DfrankUtil'
-" Plugin 'vim-scripts/vimprj'
-" Plugin 'vim-scripts/indexer.tar.gz'
-" Plugin 'justinmk/vim-syntax-extra'                                                                                                                                     " not required
+" Plug 'xolox/vim-easytags'     " Automatic generation of ctags
+" Plug 'xolox/vim-misc'                              " Required by vim easytags
+" Plug 'alvan/vim-closetag'   " Auto close html tags. No use!!!
+" Plug 'thaerkh/vim-workspace'   " Auto save files and Sessions
+" Plug 'vim-scripts/SyntaxComplete'
+" Plug 'tpope/vim-dispatch'      " Plug for async call using vim
+" Plug 'vim-scripts/ShowMarks'   " Plug for showing marks set by m
+" Plug 'vim-scripts/project.tar.gz' " not required
+" Plug 'vim-scripts/DfrankUtil'
+" Plug 'vim-scripts/vimprj'
+" Plug 'vim-scripts/indexer.tar.gz'
+" Plug 'justinmk/vim-syntax-extra'                                                                                                                                     " not required
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " All of your Plugins must be added before the following line
 
-call vundle#end()            " required
+" call vundle#end()            " required
+call plug#end()
 
 " }}}
 
@@ -249,6 +255,14 @@ set smartcase                   " ... unless they contain at least one capital l
 "  PLUGINS
 " --------------------------------------------------------------------
 
+augroup BetterWhiteSpace
+  autocmd!
+  autocmd BufEnter * EnableStripWhitespaceOnSave
+augroup END
+
+" use system python for neovim, this is done for lldb.nvim to work
+let g:python_host_prog = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
+
 "" Javascript syntax highlighting
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
@@ -328,9 +342,9 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
 "    Neomake related settings
 " --------------------------------------------------------------
 " When writing a buffer.
-call neomake#configure#automake('w')
+" call neomake#configure#automake('w')
 " When writing a buffer, and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
+" call neomake#configure#automake('nw', 750)
 " When reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
 
@@ -340,8 +354,11 @@ call neomake#configure#automake('rw', 1000)
 " let g:neomake_ruby_enabled_makers = ['mri', 'rubocop', 'reek']
 
 let g:neomake_place_signs = 1
-let g:neomake_serialize = 1
-let g:neomake_serialize_abort_on_error = 1
+" let g:neomake_serialize = 1
+" let g:neomake_serialize_abort_on_error = 1
+
+" open quickfix window automatically
+" let g:neomake_open_list = 2
 
 " --------------------- Neomake settings ends here -------------
 " }}}
@@ -512,6 +529,12 @@ noremap <Leader><Enter> :Buffers <CR>
 
 " }}}
 
+" next and previous errors
+noremap <leader>n :lnext <CR>
+noremap <leader>p :lprev <CR>
+
+" copying the current file to clipboard
+nnoremap <leader>cp :let @*=expand("%") <CR>
 
 "" mapping ctrl shift f
 " noremap <leader>e :CtrlSF
