@@ -23,7 +23,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " let Vundle manage Vundle, required
 Plug 'gmarik/Vundle.vim'
-Plug 'tpope/vim-rails'                             " was not working, enable it sometimes later
+Plug 'tpope/vim-rails', { 'for': 'ruby' }                             " was not working, enable it sometimes later
 
 Plug 'honza/vim-snippets'
 Plug 'tomtom/tcomment_vim'                         " source for gcc command for comments
@@ -37,10 +37,10 @@ Plug 'tpope/vim-fugitive'                      " git support
 " were not getting deleted correctly, when using :DelimitMateText, it got
 " caught
 " Plug 'Valloric/YouCompleteMe'                      " Completion engine for vim
-Plug 'Shougo/deoplete.nvim'                        " asynchronous auto completion for neovim
-Plug 'fishbullet/deoplete-ruby'                    " ruby code Completion
-Plug 'Rip-Rip/clang_complete'                      " C / C++ code completion
-Plug 'zchee/deoplete-jedi'                         " python code completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " asynchronous auto completion for neovim
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby'}              " ruby code Completion
+Plug 'Shougo/deoplete-rct', { 'for' : 'ruby'}                  " ruby code completion using rcodetools gem
+Plug 'Shougo/neco-vim'                             " vim code Completion
 " Plug 'osyo-manga/vim-monster'                      " ruby code completion
 Plug 'junegunn/fzf'                                " Fuzzy search files
 Plug 'junegunn/fzf.vim'                            " fuzzy search support for vim
@@ -61,6 +61,7 @@ Plug 'SirVer/ultisnips'                            " snippet pluggin
 " Plug 'epilande/vim-es2015-snippets'
 " Plug 'ternjs/tern_for_vim'                         " completion engine for javascript
 Plug 'tpope/vim-surround'                          " change or delete surrounding text
+Plug 'ntpeters/vim-better-whitespace'              " remove whitespace
 " Plug 'jelera/vim-javascript-syntax'
 Plug 'flazz/vim-colorschemes'
 Plug 'yggdroot/indentline'
@@ -70,7 +71,7 @@ Plug 'airblade/vim-gitgutter'                      " Git gutter support for vim
 Plug 'vim-ruby/vim-ruby'                           " Vim/ Ruby configuration files for ruby
 " Plug 'vim-scripts/taglist.vim'                     " Source code browser
 " Plug 'JamshedVesuna/vim-markdown-preview'          " Previewing markdown without leaving vim
-Plug 'euclio/vim-markdown-composer'                " Better than vim-markdown-preview
+Plug 'euclio/vim-markdown-composer', { 'for': 'markdown' }                " Better than vim-markdown-preview
 Plug 'vim-scripts/Rename'                          " Rename a file in buffer and on disk
 Plug 'vim-scripts/BufOnly.vim'                     " delete all buffers but current one
 Plug 'pbrisbin/vim-mkdir'                          " Automatic creating non-existant directories
@@ -84,7 +85,7 @@ Plug 'tpope/vim-obsession'                         " vim session management
 Plug 'octol/vim-cpp-enhanced-highlight'            " cpp highlighting
 " Plug 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
 Plug 'pseewald/vim-anyfold'                        " better folding in vim: indent based
-Plug 'dbgx/lldb.nvim'                              " lldb debugging in neovim
+Plug 'dbgx/lldb.nvim'                              " lldb support for neovim
 " Plug 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
 " Plug 'wikitopian/hardmode'                         " disable h,j,k,l and arrow keys in vim
 
@@ -263,13 +264,13 @@ set smartcase                   " ... unless they contain at least one capital l
 "  PLUGINS
 " --------------------------------------------------------------------
 
-" Python mode support for python 3
-let g:pymode_python = 'python3'
+augroup BetterWhiteSpace
+  autocmd!
+  autocmd BufEnter * EnableStripWhitespaceOnSave
+augroup END
 
-" Clang completion setting
-let g:clang_library_path='/home/vivek/Downloads/clang+llvm-5.0.0-linux-x86_64-ubuntu16.04/lib'
-" use c++11 features
-let g:clang_user_options="-std=c++0x"
+" use system python for neovim, this is done for lldb.nvim to work
+let g:python_host_prog = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
 
 "" Javascript syntax highlighting
 let g:javascript_plugin_jsdoc = 1
@@ -352,7 +353,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
 "    Neomake related settings
 " --------------------------------------------------------------
 " When writing a buffer.
-call neomake#configure#automake('w')
+" call neomake#configure#automake('w')
 " When writing a buffer, and on normal mode changes (after 750ms).
 " call neomake#configure#automake('nw', 750)
 " When reading a buffer (after 1s), and when writing.
@@ -367,6 +368,9 @@ call neomake#configure#automake('w')
 let g:neomake_place_signs = 1
 " let g:neomake_serialize = 1
 " let g:neomake_serialize_abort_on_error = 1
+
+" open quickfix window automatically
+" let g:neomake_open_list = 2
 
 " --------------------- Neomake settings ends here -------------
 " }}}
@@ -537,6 +541,12 @@ noremap <Leader><Enter> :Buffers <CR>
 
 " }}}
 
+" next and previous errors
+noremap <leader>n :lnext <CR>
+noremap <leader>p :lprev <CR>
+
+" copying the current file to clipboard
+nnoremap <leader>cp :let @*=expand("%") <CR>
 
 "" mapping ctrl shift f
 " noremap <leader>e :CtrlSF
