@@ -48,6 +48,7 @@ Plug 'scrooloose/nerdtree'                         " File explorer in tree for v
 Plug 'Xuyuanp/nerdtree-git-plugin'                 " shows the file chaged status in tree
 Plug 'vim-airline/vim-airline'                     " shows status in vim, has a lot of info
 Plug 'vim-airline/vim-airline-themes'
+Plug 'skielbasa/vim-material-monokai'              " monokai theme for vim
 " Plug 'vim-syntastic/syntastic'                     " syntax linting support for vim
 Plug 'neomake/neomake'                             " asynchronous linting in neovim
 " Plug 'w0rp/ale'                                    " Seems better than neomake
@@ -61,7 +62,7 @@ Plug 'SirVer/ultisnips'                            " snippet pluggin
 " Plug 'epilande/vim-es2015-snippets'
 " Plug 'ternjs/tern_for_vim'                         " completion engine for javascript
 Plug 'tpope/vim-surround'                          " change or delete surrounding text
-Plug 'ntpeters/vim-better-whitespace'              " remove whitespace
+" Plug 'ntpeters/vim-better-whitespace'              " remove whitespace; not good as it is bit slow, moving to a git commit hook
 " Plug 'jelera/vim-javascript-syntax'
 Plug 'flazz/vim-colorschemes'
 Plug 'yggdroot/indentline'
@@ -86,6 +87,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'            " cpp highlighting
 " Plug 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
 Plug 'pseewald/vim-anyfold'                        " better folding in vim: indent based
 Plug 'dbgx/lldb.nvim'                              " lldb support for neovim
+Plug 'skywind3000/asyncrun.vim'                    " run system commands asynchronously
 " Plug 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
 " Plug 'wikitopian/hardmode'                         " disable h,j,k,l and arrow keys in vim
 
@@ -135,6 +137,10 @@ call plug#end()
 " colorscheme janah
 " colorscheme made_of_code
 " colorscheme molokai
+" colorscheme onehalfdark
+" colorscheme angr
+colorscheme material-monokai
+
 set cursorline      " Highlight current line
 set cc=80           " highlight the 80 columns
 
@@ -237,7 +243,7 @@ set tags=./tags;,tags;           " look for a tags file in the directory of the 
 " let g:easytags_async = 1         " Do not block vim do work in async
 
 "" Support for ack
-set grepprg=ag
+set grepprg=rg\ --vimgrep
 
 " Searching {{{
 " --------------------------------------------------------------------
@@ -264,10 +270,10 @@ set smartcase                   " ... unless they contain at least one capital l
 "  PLUGINS
 " --------------------------------------------------------------------
 
-augroup BetterWhiteSpace
-  autocmd!
-  autocmd BufEnter * EnableStripWhitespaceOnSave
-augroup END
+" augroup BetterWhiteSpace
+"   autocmd!
+"   autocmd BufEnter * EnableStripWhitespaceOnSave
+" augroup END
 
 " use system python for neovim, this is done for lldb.nvim to work
 let g:python_host_prog = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
@@ -324,7 +330,8 @@ augroup END
 "" vim airline
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
-let g:airline_theme='onedark'
+" let g:airline_theme='onedark'
+let g:airline_theme='materialmonokai'
 
 "" Ulti snip settings
 " Ulti snip settins {{{
@@ -589,7 +596,10 @@ nnoremap <leader><space> :noh <CR>
 vnoremap // y/<C-R>"<CR>
 
 " bind <leader>b to grep word under cursor
-nnoremap <leader>b  :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+" nnoremap <leader>b :Ag '"<C-R><C-W>"<CR>:cw<CR>
+" <C-R><C-W> is used to get the word under cursor
+" using Rg, as ag.vim is not being maintained anymore
+noremap <leader>b :Rg <C-R><C-W><CR>
 
 command! -nargs=+ -complete=file -bar Ag silent! ag! <args>|cwindow|redraw!
 
@@ -603,7 +613,13 @@ command! -nargs=+ -complete=file -bar Ag silent! ag! <args>|cwindow|redraw!
 " FZF settings {{{
 
 " FZF settings
+" if has('mac')
+" noremap <D-p> :FZF<CR>
+" elseif has('unix')
 noremap <C-p> :FZF<CR>
+" endif
+
+" nnoremap <D-a> :FZF<CR>
 
 " Indenting the whole file
 nnoremap <leader>i :normal gg=G<cr>
