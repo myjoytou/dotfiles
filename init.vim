@@ -28,20 +28,11 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }                             " was not 
 Plug 'honza/vim-snippets'
 Plug 'tomtom/tcomment_vim'                         " source for gcc command for comments
 Plug 'tpope/vim-fugitive'                      " git support
-" Plug 'python-mode/python-mode'                     " extensive python support for vim => not working as expected
-" Plug 'pangloss/vim-javascript'                     " JavaScript support
-" Plug 'mxw/vim-jsx'
-" Plug 'https://github.com/vim-scripts/ScrollColors'
-" Plug 'myjoytou/YouCompleteMe'                      " Using forked version of
-" YCM as it was causing the backspace in delimitmate to break and both quotes
-" were not getting deleted correctly, when using :DelimitMateText, it got
-" caught
-" Plug 'Valloric/YouCompleteMe'                      " Completion engine for vim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " asynchronous auto completion for neovim
 Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby'}              " ruby code Completion
 Plug 'Shougo/deoplete-rct', { 'for' : 'ruby'}                  " ruby code completion using rcodetools gem
 Plug 'Shougo/neco-vim'                             " vim code Completion
-" Plug 'osyo-manga/vim-monster'                      " ruby code completion
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " Javascript autocompletion
 Plug 'junegunn/fzf'                                " Fuzzy search files
 Plug 'junegunn/fzf.vim'                            " fuzzy search support for vim
 Plug 'scrooloose/nerdtree'                         " File explorer in tree for vim
@@ -49,50 +40,66 @@ Plug 'Xuyuanp/nerdtree-git-plugin'                 " shows the file chaged statu
 Plug 'vim-airline/vim-airline'                     " shows status in vim, has a lot of info
 Plug 'vim-airline/vim-airline-themes'
 Plug 'skielbasa/vim-material-monokai'              " monokai theme for vim
-" Plug 'vim-syntastic/syntastic'                     " syntax linting support for vim
-Plug 'neomake/neomake'                             " asynchronous linting in neovim
-" Plug 'w0rp/ale'                                    " Seems better than neomake
+Plug 'neomake/neomake', { 'do': 'npm install -g eslint jshint jscs'} " asynchronous linting in neovim
 Plug 'rking/ag.vim'                                " the silver searcher support for vim
 Plug 'mtth/scratch.vim'                            " put anything in scratch buffer, no need to create any file
-" Plug 'dyng/ctrlsf.vim'                             " Search every where ctrl shift f functionality like sublime
-" Plug 'terryma/vim-multiple-cursors'                " press ctrl n for selecting multiple similar words at a time
 Plug 'mattn/emmet-vim'                             " emmet support for vim
 Plug 'SirVer/ultisnips'                            " snippet pluggin
-" Plug 'epilande/vim-react-snippets'
-" Plug 'epilande/vim-es2015-snippets'
-" Plug 'ternjs/tern_for_vim'                         " completion engine for javascript
 Plug 'tpope/vim-surround'                          " change or delete surrounding text
-" Plug 'ntpeters/vim-better-whitespace'              " remove whitespace; not good as it is bit slow, moving to a git commit hook
-" Plug 'jelera/vim-javascript-syntax'
 Plug 'flazz/vim-colorschemes'
 Plug 'yggdroot/indentline'
 Plug 'Raimondi/delimitMate'                        " Provides automatic closing quotes, parens
 Plug 'tpope/vim-endwise'                           " Adds end to ruby code
 Plug 'airblade/vim-gitgutter'                      " Git gutter support for vim
 Plug 'vim-ruby/vim-ruby'                           " Vim/ Ruby configuration files for ruby
-" Plug 'vim-scripts/taglist.vim'                     " Source code browser
-" Plug 'JamshedVesuna/vim-markdown-preview'          " Previewing markdown without leaving vim
 Plug 'euclio/vim-markdown-composer', { 'for': 'markdown' }                " Better than vim-markdown-preview
 Plug 'vim-scripts/Rename'                          " Rename a file in buffer and on disk
 Plug 'vim-scripts/BufOnly.vim'                     " delete all buffers but current one
 Plug 'pbrisbin/vim-mkdir'                          " Automatic creating non-existant directories
 Plug 'ngmy/vim-rubocop'                            " RoboCop syntax checker
 Plug 'rainerborene/vim-reek'                       " Reek code smell checker
-" Plug 'jceb/vim-orgmode'                            " Todo list in vim like emacs org mode
-" Plug 'tpope/vim-speeddating'                       " dependency for vim-orgmode
 Plug 'tpope/vim-haml'                              " Latest HAML support
 Plug 'tpope/vim-obsession'                         " vim session management
-" Plug 'godlygeek/tabular'                           " plugin to auto align things
 Plug 'octol/vim-cpp-enhanced-highlight'            " cpp highlighting
-" Plug 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
 Plug 'pseewald/vim-anyfold'                        " better folding in vim: indent based
 Plug 'dbgx/lldb.nvim'                              " lldb support for neovim
 Plug 'skywind3000/asyncrun.vim'                    " run system commands asynchronously
+Plug 'othree/javascript-libraries-syntax.vim'      " library syntax for vim
+" Plug 'othree/yajs.vim'                             " syntax library for javascript
+" Plug 'othree/es.next.syntax.vim'                   " for es next features, required by yajs
+Plug 'mxw/vim-jsx'                                 " jxs support in neovim
+Plug 'pangloss/vim-javascript'                     " improved javascript support for vim
+" Plug 'jelera/vim-javascript-syntax'                " Enhanced javascript syntax support for vim
+Plug 'styled-components/vim-styled-components'     " support for styled components react in vim
+Plug 'hail2u/vim-css3-syntax'                      " css3 support for vim
+Plug 'alvan/vim-closetag'                          " Auto close tag for jsx components
+
+
+" Plug 'https://github.com/vim-scripts/ScrollColors'
+" Plug 'myjoytou/YouCompleteMe'                      " Using forked version of
+" YCM as it was causing the backspace in delimitmate to break and both quotes
+" were not getting deleted correctly, when using :DelimitMateText, it got
+" caught
+" Plug 'Valloric/YouCompleteMe'                      " Completion engine for vim
+" Plug 'osyo-manga/vim-monster'                      " ruby code completion
+" Plug 'vim-syntastic/syntastic'                     " syntax linting support for vim
+" Plug 'w0rp/ale'                                    " Seems better than neomake
+" Plug 'dyng/ctrlsf.vim'                             " Search every where ctrl shift f functionality like sublime
+" Plug 'terryma/vim-multiple-cursors'                " press ctrl n for selecting multiple similar words at a time
+" Plug 'epilande/vim-react-snippets'
+" Plug 'epilande/vim-es2015-snippets'
+" Plug 'ternjs/tern_for_vim'                         " completion engine for javascript
+" Plug 'ntpeters/vim-better-whitespace'              " remove whitespace; not good as it is bit slow, moving to a git commit hook
+" Plug 'vim-scripts/taglist.vim'                     " Source code browser
+" Plug 'JamshedVesuna/vim-markdown-preview'          " Previewing markdown without leaving vim
+" Plug 'jceb/vim-orgmode'                            " Todo list in vim like emacs org mode
+" Plug 'tpope/vim-speeddating'                       " dependency for vim-orgmode
+" Plug 'godlygeek/tabular'                           " plugin to auto align things
+" Plug 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
+
+" Plug 'Quramy/vim-js-pretty-template'               " template string syntax support for javascript
 " Plug 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
 " Plug 'wikitopian/hardmode'                         " disable h,j,k,l and arrow keys in vim
-
-
-
 " Plug 'skwp/greplace.vim'                           " Search and replace across all files interactively
 " Plug 'chrisbra/csv.vim'                            " CSV support for VIM
 " Plug 'vim-scripts/IndexedSearch'                   " shows 'Nth match out of M' at every search (index of match+total # matches)
@@ -171,6 +178,18 @@ let mapleader = ","            " mapping leader(\) to ,
 
 set wildmode=full
 set wildmenu
+
+" this is done to allow webpack to do auto complilation
+" this setting will disable save write 
+set backupcopy=yes
+
+" save automatically when text is changed
+" augroup AutoSave
+"   autocmd!
+"
+"   set updatetime=200
+"   autocmd CursorHold * :wall 
+" augroup END
 
 " using all the colors 256 versions
 let g:rehash256 = 1
@@ -275,28 +294,119 @@ set smartcase                   " ... unless they contain at least one capital l
 "   autocmd BufEnter * EnableStripWhitespaceOnSave
 " augroup END
 
+" setting for vim-closetag {{{
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js"
+" }}}
+
+" setting for jsx support
+let g:jsx_ext_required = 0
+
+" settings for ternjs {{{
+
+" Whether to include the types of the completions in the result data. Default: 0
+let g:deoplete#sources#ternjs#types = 1
+
+" Whether to include the distance (in scopes for variables, in prototypes for 
+" properties) between the completions and the origin position in the result 
+" data. Default: 0
+let g:deoplete#sources#ternjs#depths = 1
+
+" Whether to include documentation strings (if found) in the result data.
+" Default: 0
+let g:deoplete#sources#ternjs#docs = 1
+
+" When on, only completions that match the current word at the given point will
+" be returned. Turn this off to get all results, so that you can filter on the 
+" client side. Default: 1
+let g:deoplete#sources#ternjs#filter = 0
+
+" Whether to use a case-insensitive compare between the current word and 
+" potential completions. Default 0
+let g:deoplete#sources#ternjs#case_insensitive = 1
+
+" When completing a property and no completions are found, Tern will use some 
+" heuristics to try and return some properties anyway. Set this to 0 to 
+" turn that off. Default: 1
+let g:deoplete#sources#ternjs#guess = 0
+
+" Determines whether the result set will be sorted. Default: 1
+let g:deoplete#sources#ternjs#sort = 0
+
+" When disabled, only the text before the given position is considered part of 
+" the word. When enabled (the default), the whole variable name that the cursor
+" is on will be included. Default: 1
+let g:deoplete#sources#ternjs#expand_word_forward = 0
+
+" Whether to ignore the properties of Object.prototype unless they have been 
+" spelled out by at least two characters. Default: 1
+let g:deoplete#sources#ternjs#omit_object_prototype = 0
+
+" Whether to include JavaScript keywords when completing something that is not 
+" a property. Default: 0
+let g:deoplete#sources#ternjs#include_keywords = 1
+
+" If completions should be returned when inside a literal. Default: 1
+let g:deoplete#sources#ternjs#in_literal = 0
+
+
+"Add extra filetypes
+let g:deoplete#sources#ternjs#filetypes = ['jsx', 'javascript.jsx', 'vue']
+
+" }}}
+
+" setting for vim-js-pretty-template
+" augroup javascript_string_template
+"   autocmd!
+"   autocmd FileType javascript JsPreTmpl html
+" augroup END
+
 " use system python for neovim, this is done for lldb.nvim to work
 let g:python_host_prog = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
 
-"" Javascript syntax highlighting
+"" Javascript syntax highlighting {{{
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:jsx_ext_required = 0 " Allow jsx in normal js files
+" }}}
 
-"" Vim any-fold settings
+"" Vim any-fold settings {{{
 let anyfold_activate=1
 set foldlevel=100
+" }}}
 
-"" YouCompleteMe
+"" YouCompleteMe {{{
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_autoclose_preview_window_after_completion=1 " close the preview window after the completion
 " let g:ycm_show_diagnostics_ui = 0     " do not use YCM syntax checker
+" }}}
 
 " Deoplete Settings {{{
-" --------------------------------------------------------------
-"    Deoplete settings start here
-" --------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
+
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
+
+" let g:deoplete#enable_refresh_always = 0
+" let g:deoplete#enable_camel_case = 1
+" let g:deoplete#max_abbr_width = 35
+" let g:deoplete#max_menu_width = 20
+" let g:deoplete#skip_chars = ['(', ')', '<', '>']
+" let g:deoplete#tag#cache_limit_size = 800000
+" let g:deoplete#file#enable_buffer_path = 1
+
+" let g:deoplete#omni#functions = {}
+" let g:deoplete#omni#functions.Javascript = ['tern#Complete', 'csscomplete#CompleteCSS']
+
+" omni function 
+" aug omnicomplete
+"   autocmd!
+"   autocmd FileType css,sass,scss,stylus,less setl omnifunc=csscomplete#CompleteCSS
+" aug END
+
+augroup deoplete_vim
+  autocmd!
+  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup END
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -306,34 +416,36 @@ inoremap <silent><expr> <TAB>
 function! s:check_back_space() abort "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+endfunction
+"}}}
 
 " close the preview window when completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " --------------------- Deoplete Settings Ends here -------------
 " }}}
 
-" "" vim-monster settings
+" "" vim-monster settings {{{
 " let g:monster#completion#rcodetools#backend = "async_rct_complete"
 " let g:deoplete#sources#omni#input_patterns = {
 " \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-" \}
+" \}}}
 
-"" Nerd Tree specific
+"" Nerd Tree specific {{{
 augroup nerdtree
   autocmd!
   autocmd StdinReadPre * let s:std_in=1
   noremap <C-b> :NERDTreeToggle<CR>
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
+" }}}
 
-"" vim airline
+"" vim airline {{{
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 " let g:airline_theme='onedark'
 let g:airline_theme='materialmonokai'
+" }}}
 
-"" Ulti snip settings
 " Ulti snip settins {{{
 let g:UltiSnipsExpandTrigger='<C-j>'
 let g:UltiSnipsJumpForwardTrigger='<C-j>'
@@ -341,34 +453,26 @@ let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 let g:UltiSnipsSnippetsDir='~/.config/nvim/custom_snippets'
 " Setting the search path for snippets
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
-
-"" Auto close plugin for html tags settings
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
-
 " }}}
 
-"" ctrl p plugin
+"" ctrl p plugin {{{
 " let g:ctrlp_max_files=0
 " let g:ctrlp_match_window = 'bottom,order:ttb'
 " let g:ctrlp_switch_buffer = 'Et'
 " let g:ctrlp_working_path_mode = 0
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-"
+" }}}
 
 " Neomake Settings {{{
-" --------------------------------------------------------------
-"    Neomake related settings
-" --------------------------------------------------------------
 " When writing a buffer.
 " call neomake#configure#automake('w')
 " When writing a buffer, and on normal mode changes (after 750ms).
 " call neomake#configure#automake('nw', 750)
 " When reading a buffer (after 1s), and when writing.
-" call neomake#configure#automake('rw', 1000)
-" call neomake#configure#automake('rw')
+call neomake#configure#automake('rw', 500)
 
 " let g:neomake_open_list = 2 " open quickfix automatically
-
+"
 " For ruby
 " let g:neomake_ruby_enabled_makers = ['mri', 'rubocop', 'reek']
 
@@ -379,7 +483,7 @@ let g:neomake_place_signs = 1
 " open quickfix window automatically
 " let g:neomake_open_list = 2
 
-" --------------------- Neomake settings ends here -------------
+let g:neomake_javascript_enabled_makers = ['eslint', 'jscs']
 " }}}
 
 
@@ -421,15 +525,16 @@ set statusline+=%*
 "----------------------------- Syntastic settings ends here ----------------
 " }}}
 
-" settings for vim cpp enhanced highlighting
+" settings for vim cpp enhanced highlighting {{{
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
+"}}}
 
 
-"" vim rails settings
+"" vim rails settings {{{
 
 " let g:rubycomplete_buffer_loading = 1
 " let g:rubycomplete_rails = 1
@@ -439,23 +544,24 @@ augroup filetype_ruby
   autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
   autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 augroup END
+" }}}
 
 "" python syntax highlighting
 let python_highlight_all = 1
 
-"" Tern support
-let g:tern_map_keys=1 "enable keyboard shortcuts
-let g:tern_show_argument_hints='on_hold' "show argument hints
-map <Leader>t :TernDef<Return>
+" "" Tern support {{{
+" let g:tern_map_keys=1 "enable keyboard shortcuts
+" let g:tern_show_argument_hints='on_hold' "show argument hints
+" map <Leader>t :TernDef<Return>
+" }}}
 
-"" Markdown preview settings
+"" Markdown preview settings {{{
 " let vim_markdown_preview_hotkey='<C-m>'
 " " let vim_markdown_preview_browser='Google'
 " let vim_markdown_preview_github=1
 " let vim_markdown_preview_toggle=2
+" }}}
 
-
-"" Todo list in vim
 
 " FZF related settings {{{
 " This is the default extra key bindings
@@ -504,6 +610,19 @@ let g:fzf_tags_command = 'ctags -R'
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " }}}
 
+" Emmet support settings {{{
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
+" let g:user_emmet_leader_key='<TAB>'
+" augroup emmet_support
+"   autocmd!
+"   autocmd FileType html,css,javascript.jsx EmmetInstall
+" augroup END
+" }}}
+
 " ------------------------ PLUGINS ENDS HERE -----------------------
 
 " }}}
@@ -521,6 +640,21 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " read http://learnvimscriptthehardway.stevelosh.com/chapters/05.html
 "
 
+
+" save using ctrl-s, as we are using noremap it is difficult
+" to reuse normal mode <c-s>
+" nnoremap <c-s>  :w<CR> 
+" vnoremap <c-s> <Esc>:w<CR>gv
+" inoremap <c-s> <Esc>:w<CR>
+
+nnoremap <leader>w :w<CR>
+vnoremap <leader>w <Esc>:w<CR>gv
+inoremap <leader>w <Esc>:w<CR>
+
+nnoremap <leader>q :wq<CR>
+vnoremap <leader>q <Esc>:wq<CR>gv
+inoremap <leader>q <Esc>:wq<CR>
+
 " mapping esc key to jk
 inoremap jk <esc>
 " removing esc key property to learn new mapping
@@ -534,7 +668,7 @@ noremap <Leader>a :bprev<Return>
 noremap <Leader>s :bnext<Return>
 noremap <Leader>d :bd<Return>
 " map <Leader>f :b
-noremap <leader>q :buffers<Return>:buffer
+" noremap <leader>q :buffers<Return>:buffer
 
 "" mapping navigation in buffer
 nnoremap <leader>j <C-W><C-J>
@@ -625,7 +759,7 @@ noremap <C-p> :FZF<CR>
 nnoremap <leader>i :normal gg=G<cr>
 
 " Put error on a line which have trailing whitespace
-nnoremap <Leader>w :match Error /\v\s+$/<CR>
+" nnoremap <Leader>w :match Error /\v\s+$/<CR>
 
 " Mapping selecting mappings nnoremap <leader><tab> <plug>(fzf-maps-n)
 xnoremap <leader><tab> <plug>(fzf-maps-x)
