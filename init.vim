@@ -33,6 +33,8 @@ Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby'}              " ruby code Compl
 Plug 'Shougo/deoplete-rct', { 'for' : 'ruby'}                  " ruby code completion using rcodetools gem
 Plug 'Shougo/neco-vim'                             " vim code Completion
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " Javascript autocompletion
+Plug 'Rip-Rip/clang_complete'                      " C / C++ code completion
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }                         " python code completion
 Plug 'junegunn/fzf'                                " Fuzzy search files
 Plug 'junegunn/fzf.vim'                            " fuzzy search support for vim
 Plug 'scrooloose/nerdtree'                         " File explorer in tree for vim
@@ -288,11 +290,18 @@ set smartcase                   " ... unless they contain at least one capital l
 " --------------------------------------------------------------------
 "  PLUGINS
 " --------------------------------------------------------------------
+" Python mode support for python 3
+let g:pymode_python = 'python3'
 
 " augroup BetterWhiteSpace
 "   autocmd!
 "   autocmd BufEnter * EnableStripWhitespaceOnSave
 " augroup END
+
+" Clang completion setting
+let g:clang_library_path='/home/vivek/Downloads/clang+llvm-5.0.0-linux-x86_64-ubuntu16.04/lib'
+" use c++11 features
+let g:clang_user_options="-std=c++0x"
 
 " setting for vim-closetag {{{
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js"
@@ -340,6 +349,8 @@ let g:deoplete#sources#ternjs#expand_word_forward = 0
 " Whether to ignore the properties of Object.prototype unless they have been 
 " spelled out by at least two characters. Default: 1
 let g:deoplete#sources#ternjs#omit_object_prototype = 0
+
+"" Javascript syntax highlighting
 
 " Whether to include JavaScript keywords when completing something that is not 
 " a property. Default: 0
@@ -397,7 +408,7 @@ let g:deoplete#omni#input_patterns.javascript = '[^. *\t]\.\w*'
 " let g:deoplete#omni#functions = {}
 " let g:deoplete#omni#functions.Javascript = ['tern#Complete', 'csscomplete#CompleteCSS']
 
-" omni function 
+" omni function
 " aug omnicomplete
 "   autocmd!
 "   autocmd FileType css,sass,scss,stylus,less setl omnifunc=csscomplete#CompleteCSS
