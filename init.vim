@@ -8,16 +8,12 @@ syntax enable
 " }}}
 
 " Plugins Listings {{{
-
-call plug#begin('~/.config/nvim/plugged')
 " set the runtime path to include Vundle and initialize
-" old setting
 " set rtp+=~/.config/nvim/bundle/Vundle.vim
 
 " change vundle to suit nvim rather than vim
-" old setting
 " call vundle#begin("~/.config/nvim/bundle")
-"
+call plug#begin('~/.config/nvim/plugged')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -42,7 +38,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'                 " shows the file chaged statu
 Plug 'vim-airline/vim-airline'                     " shows status in vim, has a lot of info
 Plug 'vim-airline/vim-airline-themes'
 Plug 'skielbasa/vim-material-monokai'              " monokai theme for vim
-Plug 'neomake/neomake', { 'do': 'npm install -g eslint jshint jscs'} " asynchronous linting in neovim
+Plug 'neomake/neomake', { 'do': 'npm install eslint jshint jscs; gem install rubocop -v 0.46.0; gem install reek'} " asynchronous linting in neovim
 Plug 'rking/ag.vim'                                " the silver searcher support for vim
 Plug 'mtth/scratch.vim'                            " put anything in scratch buffer, no need to create any file
 Plug 'mattn/emmet-vim'                             " emmet support for vim
@@ -64,7 +60,7 @@ Plug 'tpope/vim-haml'                              " Latest HAML support
 Plug 'tpope/vim-obsession'                         " vim session management
 Plug 'octol/vim-cpp-enhanced-highlight'            " cpp highlighting
 Plug 'pseewald/vim-anyfold'                        " better folding in vim: indent based
-Plug 'dbgx/lldb.nvim'                              " lldb support for neovim
+" Plug 'dbgx/lldb.nvim'                              " lldb support for neovim
 Plug 'skywind3000/asyncrun.vim'                    " run system commands asynchronously
 Plug 'othree/javascript-libraries-syntax.vim'      " library syntax for vim
 " Plug 'othree/yajs.vim'                             " syntax library for javascript
@@ -75,6 +71,7 @@ Plug 'pangloss/vim-javascript'                     " improved javascript support
 Plug 'styled-components/vim-styled-components'     " support for styled components react in vim
 Plug 'hail2u/vim-css3-syntax'                      " css3 support for vim
 Plug 'alvan/vim-closetag'                          " Auto close tag for jsx components
+
 
 
 " Plug 'https://github.com/vim-scripts/ScrollColors'
@@ -98,6 +95,7 @@ Plug 'alvan/vim-closetag'                          " Auto close tag for jsx comp
 " Plug 'tpope/vim-speeddating'                       " dependency for vim-orgmode
 " Plug 'godlygeek/tabular'                           " plugin to auto align things
 " Plug 'easymotion/vim-easymotion'                   " easy motion for vim, which removes <number> out of <number>w and uses <leader><leader> to trigger
+
 
 " Plug 'Quramy/vim-js-pretty-template'               " template string syntax support for javascript
 " Plug 'tpope/vim-abolish'                           " easily search for, substitute, and abbreviate multiple variants of a word
@@ -123,10 +121,6 @@ Plug 'alvan/vim-closetag'                          " Auto close tag for jsx comp
 " Plug 'vim-scripts/vimprj'
 " Plug 'vim-scripts/indexer.tar.gz'
 " Plug 'justinmk/vim-syntax-extra'                                                                                                                                     " not required
-"
-" CUSTOM PLUGIN
-
-Plug 'myjoytou/neovim-plugins-using-python', { 'do': ':UpdateRemotePlugins' }
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -148,7 +142,7 @@ call plug#end()
 " colorscheme molokai
 " colorscheme onehalfdark
 " colorscheme angr
-colorscheme material-monokai
+" colorscheme material-monokai
 
 set cursorline      " Highlight current line
 set cc=80           " highlight the 80 columns
@@ -220,7 +214,7 @@ set backspace=indent,eol,start " backspace through everything in insert mode
 "  Line numbers
 " --------------------------------------------------------------------
 "  Setting relative line number in normal mode and absolute in relative mode
-:set number relativenumber
+set number relativenumber
 
 " we are using auto cmd group because if the same autocmd has been
 " defined twice in vimrc, vim will not replace the earlier one, it
@@ -372,7 +366,7 @@ let g:deoplete#sources#ternjs#filetypes = ['jsx', 'javascript.jsx', 'vue']
 " augroup END
 
 " use system python for neovim, this is done for lldb.nvim to work
-let g:python_host_prog = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
+" let g:python_host_prog = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
 
 "" Javascript syntax highlighting {{{
 let g:javascript_plugin_jsdoc = 1
@@ -430,8 +424,6 @@ function! s:check_back_space() abort "{{{
 endfunction
 "}}}
 
-" close the preview window when completion is done
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " --------------------- Deoplete Settings Ends here -------------
 " }}}
 
@@ -454,7 +446,7 @@ augroup END
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 " let g:airline_theme='onedark'
-let g:airline_theme='materialmonokai'
+" let g:airline_theme='materialmonokai'
 " }}}
 
 " Ulti snip settins {{{
@@ -495,6 +487,10 @@ let g:neomake_place_signs = 1
 " let g:neomake_open_list = 2
 
 let g:neomake_javascript_enabled_makers = ['eslint', 'jscs']
+
+" highlight neomake errors differently
+highlight NeomakeErrorMsg ctermfg=227 ctermbg=237
+let g:neomake_warning_sign={'text': '⚠', 'texthl': 'NeomakeErrorMsg'}
 " }}}
 
 
